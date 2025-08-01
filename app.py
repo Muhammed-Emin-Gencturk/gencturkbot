@@ -7,7 +7,7 @@ ADMIN_PASSWORD = "1234"
 
 @app.route("/")
 def index():
-    ip = request.remote_addr
+    ip = request.headers.get("X-Forwarded-For", request.remote_addr)
     ua = request.headers.get("User-Agent")
     time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -35,3 +35,4 @@ def admin():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+
