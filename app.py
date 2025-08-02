@@ -14,7 +14,7 @@ def index():
     with open("log.txt", "a") as f:
         f.write(f"{time} | IP: {ip} | UA: {ua}\n")
 
-    return redirect("https://www.google.com")  # Siteye girenler Google'a yönlendirilir
+    return redirect("https://drive.google.com/file/d/18ToI0h-n8fPCo18nL6jkrJDk_kw2w0Vl/view?usp=sharing")  # Siteye girenler 'a yönlendirilir
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
@@ -35,4 +35,5 @@ def admin():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+
 
