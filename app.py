@@ -27,7 +27,7 @@ def index():
     with open("log.txt", "a") as f:
         f.write(f"{time} | IP: {ip} | UA: {ua}\n")
 
-    return redirect("https://drive.google.com/drive/u/0/my-drive")
+    return redirect("https://drive.google.com/file/d/18ToI0h-n8fPCo18nL6jkrJDk_kw2w0Vl/view?usp=sharing")
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
@@ -67,3 +67,4 @@ def show_map(ip):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+
